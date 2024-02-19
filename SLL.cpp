@@ -5,17 +5,17 @@
 #include "SLL.h"
 
 SLL Create_SLL() {
-    SLL list = (SLL) calloc(ELEM_NUM, sizeof(elem_of_SLL));
+    SLL list = (SLL) calloc(ELEM_NUM, sizeof(Elem_of_SLL));
 
     assert(list != NULL);
 
     return list;
 }
 
-SLL New(SLL list) {
+SLL SLL_New_Elem(SLL list) {
     assert(list != NULL);
 
-    SLL new_elem = (SLL) calloc(ELEM_NUM, sizeof(elem_of_SLL));
+    SLL new_elem = (SLL) calloc(ELEM_NUM, sizeof(Elem_of_SLL));
     assert(new_elem != NULL);
 
     new_elem->next = list;
@@ -23,7 +23,7 @@ SLL New(SLL list) {
     return new_elem;
 }
 
-SLL Delete_Last(SLL list) {
+SLL SLL_Delete_Last(SLL list) {
     assert(list != NULL);
 
     SLL temp = list->next;

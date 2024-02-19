@@ -8,14 +8,14 @@ struct Stack {
     size_t size;
 };
 
-struct Stack* stack_ctr();
+struct Stack* Stack_CTR();
 
-int push(struct Stack* st, void* buffer);
+int Stack_Push(struct Stack* st, void* buffer);
 
-int top(struct Stack* st, void* buffer);
+int Stack_Top(struct Stack* st, void* buffer);
 
-int pop(struct Stack* st);
+int Stack_Pop(struct Stack* st);
 
-struct Stack* stack_dtr(struct Stack* st);
+struct Stack* Stack_DTR(struct Stack* st);
 
 #endif // STACK_WITH_SLL_H_INCLUDED

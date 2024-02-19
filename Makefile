@@ -11,16 +11,16 @@ CFLAGS=-c -Wall -Wshadow -Winit-self -Wredundant-decls -Wcast-align -Wundef -Wfl
 all: Test3.exe
 
 
-Test3.exe: Test3.o Dynamic_Array.o Stack_with_DA.o
+Test3.exe: Test3.o Vector.o Stack_with_Vector.o
 	$(CC) $^ -o $@
 
-Test3.o: Test3.cpp Stack_with_DA.cpp Stack_with_DA.h Dynamic_Array.cpp Dynamic_Array.h
+Test3.o: Test3.cpp Stack_with_Vector.cpp Stack_with_Vector.h Vector.cpp Vector.h
 	$(CC) $(CFLAGS) $<
 
-Stack_with_DA.o: Stack_with_DA.cpp Stack_with_DA.h Dynamic_Array.cpp Dynamic_Array.h
+Stack_with_Vector.o: Stack_with_Vector.cpp Stack_with_Vector.h Vector.cpp Vector.h
 	$(CC) $(CFLAGS) $<
 
-Dynamic_Array.o: Dynamic_Array.cpp Dynamic_Array.h
+Vector.o: Vector.cpp Vector.h
 	$(CC) $(CFLAGS) $<
 
 .PHONY: clean

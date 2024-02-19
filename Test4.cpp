@@ -2,17 +2,17 @@
 #include <stdlib.h>
 #include <time.h>
 
-#include "Stack_with_DA.h"
+#include "Stack_with_Vector.h"
 
 int main() {
-    struct Stack* st = stack_ctr(100);
+    struct Stack* st = Stack_CTR(100);
     data_type x = 1;
     clock_t start = 0, finish = 0;
 
     start = clock();
 
     for (size_t i = 1; i <= 1000000; i++) {
-        push(st, &x);
+        Stack_Push(st, &x);
 
         double duration = 0;
 
@@ -25,7 +25,7 @@ int main() {
         }
     }
 
-    stack_dtr(st);
+    Stack_DTR(st);
 
     return 0;
 }

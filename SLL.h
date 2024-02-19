@@ -5,18 +5,18 @@ const size_t ELEM_NUM = 1;
 
 typedef int data_type;
 
-struct elem_of_SLL {
+struct Elem_of_SLL {
     data_type elem;
-    struct elem_of_SLL* next;
+    struct Elem_of_SLL* next;
 };
 
-typedef struct elem_of_SLL* SLL;
+typedef struct Elem_of_SLL* SLL;
 
 SLL Create_SLL();
 
-SLL New(SLL list);
+SLL SLL_New_Elem(SLL list);
 
-SLL Delete_Last(SLL list);
+SLL SLL_Delete_Last(SLL list);
 
 void Clear_SLL(SLL list);
 

@@ -6,7 +6,7 @@
 #include "SLL.h"
 #include "Stack_with_SLL.h"
 
-struct Stack* stack_ctr() {
+struct Stack* Stack_CTR() {
     struct Stack* st = (struct Stack*) calloc(1, sizeof(struct Stack));
     assert(st != NULL);
 
@@ -15,7 +15,7 @@ struct Stack* stack_ctr() {
     return st;
 }
 
-int push(struct Stack* st, void* buffer) {
+int Stack_Push(struct Stack* st, void* buffer) {
     assert(st != NULL);
     assert(buffer != NULL);
 
@@ -34,7 +34,7 @@ int push(struct Stack* st, void* buffer) {
     return 0;
 }
 
-int top(struct Stack* st, void* buffer) {
+int Stack_Top(struct Stack* st, void* buffer) {
     assert(st != NULL);
     assert(buffer != NULL);
 
@@ -45,7 +45,7 @@ int top(struct Stack* st, void* buffer) {
     return 0;
 }
 
-int pop(struct Stack* st) {
+int Stack_Pop(struct Stack* st) {
     assert(st != NULL);
 
     st->data = Delete_Last(st->data);
@@ -54,7 +54,7 @@ int pop(struct Stack* st) {
     return 1;
 }
 
-struct Stack* stack_dtr(struct Stack* st) {
+struct Stack* Stack_DTR(struct Stack* st) {
     assert(st != NULL);
 
     Clear_SLL(st->data);
