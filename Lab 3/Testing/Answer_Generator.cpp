@@ -1,3 +1,4 @@
+#include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -6,6 +7,7 @@ int cmpor(const void* num1, const void* num2);
 int main(int argc, char* argv[]) {
     int len = atoi(argv[1]);
     int* arr = (int*) calloc(len, sizeof(int));
+    assert(arr != NULL);
 
     for (int i = 0; i < len; i++) {
         scanf("%d", arr + i);

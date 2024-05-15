@@ -1,3 +1,4 @@
+#include <assert.h>
 #include <stdio.h>
 #include <string.h>
 #include "Merge_Sort.h"
@@ -8,6 +9,7 @@ void Recursive_Merge_Sort(int* arr, size_t n) {
         Recursive_Merge_Sort(arr + n / 2, n - n / 2);
         size_t i1 = 0, i2 = 0;
         int* merge = (int*) calloc(n, sizeof(int));
+        assert(merge != NULL);
         while (i1 < n / 2 && i2 < n - n / 2) {
             if (arr[i1] < arr[n / 2 + i2]) {
                 merge[i1 + i2] = arr[i1++];
@@ -39,6 +41,7 @@ void Recursive_Merge_Sort(int* arr, size_t n) {
 
 void Iterative_Merge_Sort(int* arr, size_t n) {
     int* buffer = (int*) calloc(n, sizeof(int));
+    assert(buffer != NULL);
     for (size_t len = 1; len < n; len *= 2) {
         for (size_t i = 0; i < n - len; i += 2 * len) {
             size_t i1 = 0, i2 = 0;

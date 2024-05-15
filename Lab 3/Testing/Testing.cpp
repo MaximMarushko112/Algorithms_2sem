@@ -13,11 +13,15 @@ void testing(char* dir, void (*sort)(int* arr, size_t n), char* results,
         double time = 0;
         for (char j = 1; j <= 5; j++) {
             char* file = (char*) calloc(strlen(dir) + 30, sizeof(char));
+            assert(file != NULL);
             char* file_in = (char*) calloc(strlen(dir) + 30, sizeof(char));
+            assert(file_in != NULL);
             char* file_out = (char*) calloc(strlen(dir) + 30, sizeof(char));
+            assert(file_out != NULL);
             file = strcpy(file, dir);
             file = strcat(file, "\\{");
             char* num = (char*) calloc(8, sizeof(char));
+            assert(num != NULL);
             int flag = 0, k = 1000000, l = 0;
             while (k > 0) {
                 int digit = i % (k * 10) / k;
@@ -43,6 +47,7 @@ void testing(char* dir, void (*sort)(int* arr, size_t n), char* results,
             FILE* input = fopen(file_in, "r");
 
             int* arr = (int*) calloc(i, sizeof(int));
+            assert(arr != NULL);
             for (size_t x = 0; x < i; x++) {
                 fscanf(input, "%d", arr + x);
             }
@@ -58,7 +63,6 @@ void testing(char* dir, void (*sort)(int* arr, size_t n), char* results,
             int answer = 0;
             for (size_t x = 0; x < i; x++) {
                 fscanf(output, "%d", &answer);
-                //printf("%d %d\n", arr[x], answer);
                 assert(arr[x] == answer);
             }
 
