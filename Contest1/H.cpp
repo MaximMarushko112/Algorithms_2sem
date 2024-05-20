@@ -4,10 +4,12 @@
 
 void swap(int* arr, size_t l, size_t r);
 void Hoar_Mid_Q_Sort(int* arr, size_t n);
+void Partition(size_t* l, size_t* r, int* arr, size_t n);
 
 int main() {
     size_t n = 0;
-    scanf("%d", &n);
+    int checker = scanf("%lu", &n);
+    assert(checker != 1);
     int* arr = (int*) calloc(n, sizeof(int));
     assert(arr != NULL);
     for (size_t i = 0; i < n; i++) {
@@ -46,32 +48,37 @@ void Hoar_Mid_Q_Sort(int* arr, size_t n) {
             }
             return;
         }
-        size_t l = 0, r = n - 1, pivot = n / 2;
-        int piv = arr[pivot];
-        while (l < r) {
-            while (arr[l] < piv) {
-                l++;
-            }
-            while (arr[r] > piv) {
-                r--;
-            }
-            if (l >= r) {
-                break;
-            }
-            else {
-                swap(arr, l, r);
-                l++;
-                r--;
-            }
-        }
-        if (r <= 1) {
-            r = 1;
-        }
-        else if (r >= n - 2) {
-            r = n - 2;
-        }
+        size_t l = 0, r = n - 1;
+        Partition(&l, &r, arr, n);
         Hoar_Mid_Q_Sort(arr, r + 1);
         arr += r;
         n -= r;
+    }
+}
+
+void Partition(size_t* l, size_t* r, int* arr, size_t n) {
+    size_t pivot = n / 2;
+    int piv = arr[pivot];
+    while (*l < *r) {
+        while (arr[*l] < piv) {
+            (*l)++;
+        }
+        while (arr[*r] > piv) {
+            (*r)--;
+        }
+        if (*l >= *r) {
+            break;
+        }
+        else {
+            swap(arr, *l, *r);
+            (*l)++;
+            (*r)--;
+        }
+    }
+    if (*r <= 1) {
+        *r = 1;
+    }
+    else if (*r >= n - 2) {
+        *r = n - 2;
     }
 }
