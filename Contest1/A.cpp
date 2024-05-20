@@ -5,6 +5,7 @@
 
 const int MULTIPLIER = 2;
 const size_t MIN_CAPACITY = 16;
+const size_t BUFFER_LEN = 6;
 
 typedef int data_type;
 
@@ -37,14 +38,16 @@ int Stack_Pop(struct Stack* st);
 struct Stack* Stack_DTR(struct Stack* st);
 
 int main() {
-    char buffer[6] = "";
+    char buffer[BUFFER_LEN] = "";
     data_type x = 0;
     struct Stack* st= Stack_CTR(100);
+    assert(st != NULL);
 
     while(strcmp(buffer, "exit") != 0) {
-        scanf("%s", buffer);
+        scanf("%6s", buffer);
         if (strcmp(buffer, "push") == 0) {
-            scanf("%d", &x);
+            int checker = scanf("%d", &x);
+            assert(checker != 1);
             Stack_Push(st, &x);
             printf("ok\n");
         }
