@@ -3,6 +3,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define ERROR 0
+#define OK 1
+
 const int MULTIPLIER = 2;
 const size_t MIN_CAPACITY = 16;
 const size_t BUFFER_LEN = 6;
@@ -44,9 +47,10 @@ int main() {
     assert(st != NULL);
 
     while(strcmp(buffer, "exit") != 0) {
-        scanf("%6s", buffer);
+        int checker = scanf("%6s", buffer);
+        assert(checker == 0);
         if (strcmp(buffer, "push") == 0) {
-            int checker = scanf("%d", &x);
+            checker = scanf("%d", &x);
             assert(checker != 1);
             Stack_Push(st, &x);
             printf("ok\n");
@@ -135,7 +139,7 @@ int Stack_Push(struct Stack* st, void* buffer) {
 
     *(st->vect->data + st->size) = *((data_type*) buffer);
     st->size++;
-    return 1;
+    return OK;
 }
 
 int Stack_Back(struct Stack* st, void* buffer) {
@@ -144,10 +148,10 @@ int Stack_Back(struct Stack* st, void* buffer) {
     assert(buffer != NULL);
 
     if (memcpy(buffer, st->vect->data + st->size - 1, sizeof(data_type)) != NULL) {
-        return 1;
+        return OK;
     }
 
-    return 0;
+    return ERROR;
 }
 
 int Stack_Pop(struct Stack* st) {
@@ -162,7 +166,7 @@ int Stack_Pop(struct Stack* st) {
         }
     }
 
-    return 1;
+    return OK;
 }
 
 struct Stack* Stack_DTR(struct Stack* st) {
