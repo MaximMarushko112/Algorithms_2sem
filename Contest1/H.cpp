@@ -5,7 +5,7 @@
 int cmp(const void* a, const void* b);
 void swap(const void* first, const void* second);
 void Hoar_Mid_Q_Sort(int* arr, size_t n, int (*cmp)(const void* a, const void* b));
-void Partition(size_t* l, size_t* r, int* arr, size_t n);
+void Partition(size_t* l, size_t* r, int* arr, size_t n, int (*cmp)(const void* a, const void* b));
 
 int main() {
     size_t n = 0;
@@ -49,14 +49,14 @@ void Hoar_Mid_Q_Sort(int* arr, size_t n, int (*cmp)(const void* a, const void* b
             return;
         }
         size_t l = 0, r = n - 1;
-        Partition(&l, &r, arr, n);
+        Partition(&l, &r, arr, n, cmp);
         Hoar_Mid_Q_Sort(arr, r + 1, cmp);
         arr += r;
         n -= r;
     }
 }
 
-void Partition(size_t* l, size_t* r, int* arr, size_t n) {
+void Partition(size_t* l, size_t* r, int* arr, size_t n, int (*cmp)(const void* a, const void* b)) {
     size_t pivot = n / 2;
     while (*l < *r) {
         while (cmp(arr + *l, arr + pivot) < 0) {
