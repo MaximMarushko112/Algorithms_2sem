@@ -1,4 +1,3 @@
-#include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -6,10 +5,8 @@
 int main(int argc, char* argv[]) {
     int len = atoi(argv[1]);
     int max_num = atoi(argv[2]);
-    int seed = atoi(argv[3]);
-    srand(seed);
+    srand(42);
     int* arr = (int*) calloc(len, sizeof(int));
-    assert(arr != NULL);
     for (int i = 0; i < len; i++) {
         arr[i] = rand() % max_num;
         printf("%d ", arr[i]);
