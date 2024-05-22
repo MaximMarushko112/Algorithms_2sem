@@ -3,19 +3,11 @@
 #include <string.h>
 #include <time.h>
 
-void swap(size_t* arr, size_t l, size_t r);
-void Sift_Down(size_t* arr, size_t pos, size_t len);
-void Sift_Up(size_t* arr, size_t pos);
-void Line(size_t* arr, size_t len);
-void NLog(size_t* arr, size_t len);
-void Testing(char* dir, void (*heap)(size_t* arr, size_t len), char* results,
-             size_t from, size_t to, size_t step);
+#include "Binary_Heap.h"
 
 int main() {
-    Testing("C:\\Users\\PC\\Desktop\\Algorithms_2sem\\Lab 4\\tests", Line,
-     "C:\\Users\\PC\\Desktop\\Algorithms_2sem\\Lab 4\\Line.out", 100000, 1000000, 100000);
-    Testing("C:\\Users\\PC\\Desktop\\Algorithms_2sem\\Lab 4\\tests", NLog,
-     "C:\\Users\\PC\\Desktop\\Algorithms_2sem\\Lab 4\\NLog.out", 100000, 1000000, 100000);
+    Testing("\\tests", Line, "\\Line.out", 100000, 1000000, 100000);
+    Testing("\\tests", NLog, "\\NLog.out", 100000, 1000000, 100000);
 }
 
 void swap(size_t* arr, size_t l, size_t r) {
