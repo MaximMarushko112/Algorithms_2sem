@@ -2,8 +2,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void swap(int* arr, size_t l, size_t r);
-void Hoar_Mid_Q_Sort(int* arr, size_t n);
+int cmp(const void* a, const void* b);
+void swap(const void* first, const void* second);
+void Hoar_Mid_Q_Sort(int* arr, size_t n, int (*cmp)(const void* a, const void* b));
 void Partition(size_t* l, size_t* r, int* arr, size_t n);
 
 int main() {
@@ -16,26 +17,25 @@ int main() {
         scanf("%d", arr + i);
     }
 
-    Hoar_Mid_Q_Sort(arr, n);
-    for (size_t i = 0; i < n; i++) {
-        if (i < n - 1) {
-            printf("%d ", arr[i]);
-        }
-        else {
-            printf("%d", arr[i]);
-        }
-    }
+    Hoar_Mid_Q_Sort(arr, n, cmp);
+    for (size_t i = 0; i < n - 1; i++) 
+        printf("%d ", arr[i]);
+    printf("%d", arr[n - 1]);
 
     free(arr);
 }
 
-void swap(int* arr, size_t l, size_t r) {
-    int temp = arr[l];
-    arr[l] = arr[r];
-    arr[r] = temp;
+int cmp(const void* a, const void* b) {
+    return (*(int*)a > *(int*)b) - (*(int*)a < *(int*)b);
 }
 
-void Hoar_Mid_Q_Sort(int* arr, size_t n) {
+void swap(const void* first, const void* second) {
+    int t = *(int*)first;
+    *(int*)first = *(int*)second;
+    *(int*)second = t;
+}
+
+void Hoar_Mid_Q_Sort(int* arr, size_t n, int (*cmp)(const void* a, const void* b)) {
     assert(arr != NULL);
     
     while (n != 0) {
@@ -43,14 +43,14 @@ void Hoar_Mid_Q_Sort(int* arr, size_t n) {
             return;
         }
         else if (n == 2) {
-            if (arr[0] > arr[1]) {
-                swap(arr, 0, 1);
+            if (cmp(arr, arr + 1) > 0) {
+                swap(arr, arr + 1);
             }
             return;
         }
         size_t l = 0, r = n - 1;
         Partition(&l, &r, arr, n);
-        Hoar_Mid_Q_Sort(arr, r + 1);
+        Hoar_Mid_Q_Sort(arr, r + 1, cmp);
         arr += r;
         n -= r;
     }
@@ -58,19 +58,18 @@ void Hoar_Mid_Q_Sort(int* arr, size_t n) {
 
 void Partition(size_t* l, size_t* r, int* arr, size_t n) {
     size_t pivot = n / 2;
-    int piv = arr[pivot];
     while (*l < *r) {
-        while (arr[*l] < piv) {
+        while (cmp(arr + *l, arr + pivot) < 0) {
             (*l)++;
         }
-        while (arr[*r] > piv) {
+        while (cmp(arr + *r, arr + pivot) > 0) {
             (*r)--;
         }
         if (*l >= *r) {
             break;
         }
         else {
-            swap(arr, *l, *r);
+            swap(arr + *l, arr + *r);
             (*l)++;
             (*r)--;
         }
